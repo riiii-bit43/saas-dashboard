@@ -1,0 +1,247 @@
+/* UX Case Study Process Deck Stylesheet */
+
+.case-study-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.case-study-hero::after {
+  content: 'UX CASE STUDY';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 5.5rem;
+  font-weight: 900;
+  opacity: 0.04;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+
+.hero-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.meta-item h5 {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.meta-item p {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+/* Process Timeline Navigation */
+.process-stepper {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.step-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.step-pill:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.step-pill.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.step-number {
+  background: rgba(0, 0, 0, 0.1);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.step-pill.active .step-number {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Case Study Content Card Section */
+.cs-section-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.cs-section-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cs-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .cs-grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Metric Callout Card */
+.metric-box-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .metric-box-grid { grid-template-columns: 1fr; }
+}
+
+.metric-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.metric-val {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.metric-val.green { color: var(--status-available); }
+.metric-val.purple { color: var(--tatkal); }
+
+.metric-lbl {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Heuristic Table */
+.heuristic-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.heuristic-table th, .heuristic-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.heuristic-table th {
+  background: var(--bg-main);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+}
+
+/* Persona Card */
+.persona-card {
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.persona-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.persona-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+/* User Flow Comparison Block */
+.flow-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .flow-comparison { grid-template-columns: 1fr; }
+}
+
+.flow-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.flow-box.before { border-left: 4px solid var(--status-wl); }
+.flow-box.after { border-left: 4px solid var(--status-available); }
+
+.flow-step-list {
+  list-style: none;
+  margin-top: 0.75rem;
+}
+
+.flow-step-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--border-light);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

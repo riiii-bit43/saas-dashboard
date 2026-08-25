@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRCTC UX Redesign — Portfolio Case Study & Live Interactive App</title>
+  <meta name="description" content="A complete end-to-end UX/Product Design redesign of India's Railway Booking Platform (IRCTC). Solves Tatkal booking friction, visual noise, and opaque seat confirmation statuses.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/case-study.css">
+</head>
+<body data-theme="light">
+
+  <!-- Navigation Bar with Dual-View Switcher -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="#" class="brand-logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary)"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="M8 19l-2 3"/><path d="M16 19l2 3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>
+        <span>IRCTC</span>
+        <span class="brand-badge">UX REDESIGN</span>
+      </a>
+    </div>
+
+    <!-- Dual Mode Switcher -->
+    <div class="view-switcher">
+      <button class="switch-btn active" id="btn-prototype-view">
+        Live Prototype App
+      </button>
+      <button class="switch-btn case-study-mode" id="btn-case-study-view">
+        UX Case Study Deck
+      </button>
+    </div>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="UX_CASE_STUDY.md" target="_blank" class="switch-btn" style="border:1px solid var(--border-light); text-decoration:none; font-size:0.8rem">
+        View Markdown
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- PANEL 1: LIVE INTERACTIVE WEB APP PROTOTYPE -->
+    <div class="view-panel active" id="prototype-panel">
+
+      <!-- Hero Search Panel -->
+      <section class="hero-panel">
+        <div class="hero-header">
+          <div class="hero-title">
+            <h1>Book Railway Tickets with Zero Friction</h1>
+            <p>Clean interface with predictive seat confirmation analytics and Tatkal Turbo checkout.</p>
+          </div>
+
+          <!-- Tatkal Turbo Switch -->
+          <div class="tatkal-toggle-container" id="tatkal-container">
+            <label class="switch">
+              <input type="checkbox" id="tatkal-switch">
+              <span class="slider"></span>
+            </label>
+            <div>
+              <span style="font-size:0.85rem; font-weight:700; display:block">Tatkal Turbo Mode</span>
+              <span style="font-size:0.7rem; color:var(--text-muted)">Pre-loads saved passengers for 5-sec checkout</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Form Grid -->
+        <form class="search-form-grid" onsubmit="event.preventDefault()">
+          <div class="input-group">
+            <label>From Station</label>
+            <input type="text" id="from-station-input" class="input-box" value="New Delhi (NDLS)">
+          </div>
+
+          <button type="button" class="swap-btn" id="swap-stations-btn" title="Swap Stations">⇄</button>
+
+          <div class="input-group">
+            <label>To Station</label>
+            <input type="text" id="to-station-input" class="input-box" value="Patna Junction (PNBE)">
+          </div>
+
+          <div class="input-group">
+            <label>Date of Journey</label>
+            <input type="date" id="journey-date-input" class="input-box" value="2026-08-25">
+          </div>
+
+          <div class="input-group">
+            <label>Travel Class</label>
+            <select class="input-box" id="class-select">
+              <option value="ALL">All Classes</option>
+              <option value="3A" selected>AC 3 Tier (3A)</option>
+              <option value="2A">AC 2 Tier (2A)</option>
+              <option value="1A">AC 1st Class (1A)</option>
+              <option value="SL">Sleeper (SL)</option>
+              <option value="CC">AC Chair Car (CC)</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn-search" id="search-trains-btn">
+            Search Trains
+          </button>
+        </form>
+
+        <!-- Quota Selection Chips -->
+        <div class="quota-chips">
+          <span class="quota-chip active">General (GN)</span>
+          <span class="quota-chip">Tatkal (TQ)</span>
+          <span class="quota-chip">Premium Tatkal (PT)</span>
+          <span class="quota-chip">Ladies Quota (LD)</span>
+          <span class="quota-chip">Senior Citizen (SS)</span>
+          <span class="quota-chip">Person with Disability (HP)</span>
+        </div>
+      </section>
+
+      <!-- Main Results & Filter Layout -->
+      <div class="results-layout">
+        
+        <!-- Filter Sidebar -->
+        <aside class="filter-card">
+          <h3 style="font-size:1.05rem; margin-bottom:1rem">Filter Trains</h3>
+
+          <div class="filter-group">
+            <h4>Train Types</h4>
+            <label class="checkbox-label"><input type="checkbox" checked> Vande Bharat Express</label>
+            <label class="checkbox-label"><input type="checkbox" checked> Rajdhani Express</label>
+            <label class="checkbox-label"><input type="checkbox" checked> Duronto Express</label>
+            <label class="checkbox-label"><input type="checkbox" checked> Superfast / Express</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Departure Time</h4>
+            <label class="checkbox-label"><input type="checkbox"> Morning (06:00 - 12:00)</label>
+            <label class="checkbox-label"><input type="checkbox" checked> Afternoon (12:00 - 18:00)</label>
+            <label class="checkbox-label"><input type="checkbox" checked> Night (18:00 - 06:00)</label>
+          </div>
+
+          <div class="filter-group" style="margin-bottom:0">
+            <h4>Check Live PNR Status</h4>
+            <div class="input-group">
+              <input type="text" id="pnr-input" class="input-box" placeholder="Enter 10-digit PNR" value="8429104523">
+              <button type="button" class="btn-search" style="margin-top:0.4rem; padding:0.5rem; font-size:0.85rem" onclick="checkPNRStatus()">
+                Track Train
+              </button>
+            </div>
+            <div id="pnr-result-box"></div>
+          </div>
+        </aside>
+
+        <!-- Train Search Results List -->
+        <section id="train-results-list">
+          <!-- Dynamically Rendered by js/app.js -->
+        </section>
+
+      </div>
+    </div>
+
+    <!-- PANEL 2: EMBEDDED UX CASE STUDY PROCESS DECK -->
+    <div class="view-panel" id="case-study-panel">
+
+      <!-- Case Study Header Banner -->
+      <section class="case-study-hero">
+        <h1 style="font-size:2.2rem; margin-bottom:0.6rem">IRCTC Web UX Redesign — Portfolio Case Study</h1>
+        <p style="color:#cbd5e1; max-width:800px; font-size:1.05rem">
+          Solving Tatkal booking anxiety, visual clutter, CAPTCHA latency, and opaque seat availability for Indian railway passengers through end-to-end user research, information architecture, and interactive prototyping.
+        </p>
+
+        <div class="hero-meta-grid">
+          <div class="meta-item">
+            <h5>Role</h5>
+            <p>End-to-End Product Designer</p>
+          </div>
+          <div class="meta-item">
+            <h5>Duration</h5>
+            <p>4 Weeks (Research to Prototype)</p>
+          </div>
+          <div class="meta-item">
+            <h5>Testing Impact</h5>
+            <p>Booking Speed 68% Faster</p>
+          </div>
+          <div class="meta-item">
+            <h5>SUS Score</h5>
+            <p>42 ➔ 89 (A+ Grade)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stepper Navigation -->
+      <div class="process-stepper">
+        <button class="step-pill active" data-target="all"><span class="step-number">ALL</span> All Stages</button>
+        <button class="step-pill" data-target="phase-1"><span class="step-number">1</span> Research & Heuristics</button>
+        <button class="step-pill" data-target="phase-2"><span class="step-number">2</span> Problem & HMWs</button>
+        <button class="step-pill" data-target="phase-3"><span class="step-number">3</span> Personas & Flows</button>
+        <button class="step-pill" data-target="phase-4"><span class="step-number">4</span> Wireframing</button>
+        <button class="step-pill" data-target="phase-5"><span class="step-number">5</span> Design System</button>
+        <button class="step-pill" data-target="phase-6"><span class="step-number">6</span> High-Fi UI</button>
+        <button class="step-pill" data-target="phase-7"><span class="step-number">7</span> Usability Testing</button>
+      </div>
+
+      <!-- Phase 1 Card -->
+      <article class="cs-section-card" id="phase-1">
+        <h2>Phase 1: Research & Nielsen Heuristic Evaluation</h2>
+        <p style="color:var(--text-muted); margin-bottom:1rem">
+          We audited the current IRCTC web platform against Nielsen's 10 Usability Heuristics and surveyed 24 frequent railway travelers.
+        </p>
+
+        <div class="metric-box-grid">
+          <div class="metric-box">
+            <div class="metric-val purple">41%</div>
+            <div class="metric-lbl">Tatkal Rush Booking Failures</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">29%</div>
+            <div class="metric-lbl">Distracted by Ads & Banner Noise</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">18%</div>
+            <div class="metric-lbl">Confused by Opaque WL Statuses</div>
+          </div>
+        </div>
+
+        <table class="heuristic-table">
+          <thead>
+            <tr>
+              <th>Heuristic</th>
+              <th>Legacy IRCTC Violation</th>
+              <th>Severity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Aesthetic & Minimalist Design</strong></td>
+              <td>Home screen overcrowded with 12+ flashing ads, popups, and redundant links.</td>
+              <td><span class="status-badge status-wl">Critical</span></td>
+            </tr>
+            <tr>
+              <td><strong>Error Prevention</strong></td>
+              <td>CAPTCHA fails repeatedly during 10:00 AM Tatkal rush; timeouts erase passenger data.</td>
+              <td><span class="status-badge status-wl">Critical</span></td>
+            </tr>
+            <tr>
+              <td><strong>Recognition over Recall</strong></td>
+              <td>Codes like `WL 45`, `GNWL`, `PQWL` give no indication of actual confirmation likelihood.</td>
+              <td><span class="status-badge status-rac">Major</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Phase 2 Card -->
+      <article class="cs-section-card" id="phase-2">
+        <h2>Phase 2: Problem Statement & HMW Framework</h2>
+        
+        <div style="background:var(--primary-light); padding:1.25rem; border-radius:var(--radius-md); border-left:4px solid var(--primary); margin-bottom:1.25rem">
+          <h4 style="color:var(--primary); margin-bottom:0.4rem">Core Problem Statement</h4>
+          <p>
+            <em>"Indian railway travelers experience high stress, visual fatigue, and long checkout delays on IRCTC, leading to failed bookings during high-stakes Tatkal travel windows."</em>
+          </p>
+        </div>
+
+        <div class="cs-grid-2">
+          <div style="background:var(--bg-main); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-light)">
+            <h4>HMW #1: Tatkal Turbo Speed</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted)">How might we eliminate passenger typing friction so users can check out in under 60 seconds?</p>
+          </div>
+          <div style="background:var(--bg-main); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-light)">
+            <h4>HMW #2: Predictive Status Transparency</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted)">How might we predict waiting list confirmation percentages to reduce travel uncertainty?</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Phase 3 Card -->
+      <article class="cs-section-card" id="phase-3">
+        <h2>Phase 3: Persona & 4-Step Streamlined User Flow</h2>
+
+        <div class="persona-card" style="margin-bottom:1.5rem">
+          <div class="persona-header">
+            <div class="persona-avatar">VS</div>
+            <div>
+              <h3>Vikram Sharma (Age 29, Software Engineer)</h3>
+              <p style="font-size:0.85rem; color:var(--text-muted)">Primary Persona: High-Stress Tatkal Booker</p>
+            </div>
+          </div>
+          <p style="font-size:0.9rem">
+            <strong>Goals:</strong> Book a 3rd AC ticket from Delhi to Patna at 11:00 AM sharp without getting logged out.<br>
+            <strong>Frustrations:</strong> Slow CAPTCHAs, manual passenger details entry, seat confirmation uncertainty.
+          </p>
+        </div>
+
+        <h3>User Flow Optimization (11 Steps ➔ 4 Steps)</h3>
+        <div class="flow-comparison">
+          <div class="flow-box before">
+            <h4 style="color:var(--status-wl)">Legacy IRCTC Flow (11 Steps - 4.5 Mins)</h4>
+            <ul class="flow-step-list">
+              <li>1. Homepage Ad Interstitial</li>
+              <li>2. Manual Login & CAPTCHA 1</li>
+              <li>3. Station Search Form</li>
+              <li>4. Train Selection Grid</li>
+              <li>5. Manual Passenger Entry (Name, Age, Gender, ID)</li>
+              <li>6. CAPTCHA 2 Verification</li>
+              <li>7. Multi-tab Payment Options</li>
+            </ul>
+          </div>
+
+          <div class="flow-box after">
+            <h4 style="color:var(--status-available)">Redesigned Flow (4 Steps - 85 Secs)</h4>
+            <ul class="flow-step-list">
+              <li>1. Smart Station Search + Tatkal Turbo Mode</li>
+              <li>2. Train Selection with AI Confirmation %</li>
+              <li>3. Visual Berth Picker + Saved Passenger Autofill</li>
+              <li>4. 1-Tap Checkout & Digital QR E-Ticket</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Phase 7 Card -->
+      <article class="cs-section-card" id="phase-7">
+        <h2>Phase 7: Usability Testing & Metric Validation</h2>
+
+        <div class="metric-box-grid">
+          <div class="metric-box">
+            <div class="metric-val green">89 / 100</div>
+            <div class="metric-lbl">SUS Score (A+ Grade)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">85 Secs</div>
+            <div class="metric-lbl">Avg Booking Completion</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">98%</div>
+            <div class="metric-lbl">Task Completion Success</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- Modal Container for Seat Picker and Digital Ticket -->
+  <div id="modal-container" class="hidden"></div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/data.js"></script>
+  <script src="js/case-study.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

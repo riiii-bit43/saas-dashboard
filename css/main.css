@@ -1,0 +1,227 @@
+/* IRCTC UX Redesign - Core Design System & Tokens */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Color Palette - Modern Rail Aesthetics */
+  --primary: #1d4ed8;
+  --primary-hover: #1e40af;
+  --primary-light: #eff6ff;
+  --primary-glow: rgba(29, 78, 216, 0.25);
+  
+  --tatkal: #8b5cf6;
+  --tatkal-glow: rgba(139, 92, 246, 0.35);
+  --tatkal-gradient: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%);
+  
+  --status-available: #10b981;
+  --status-available-bg: #ecfdf5;
+  --status-rac: #f59e0b;
+  --status-rac-bg: #fffbeb;
+  --status-wl: #ef4444;
+  --status-wl-bg: #fef2f2;
+  
+  --bg-main: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --border-light: rgba(226, 232, 240, 0.8);
+  --border-focus: #3b82f6;
+  
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 8px 24px var(--primary-glow);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --bg-main: #0b0f19;
+  --bg-card: rgba(18, 24, 38, 0.85);
+  --bg-glass: rgba(18, 24, 38, 0.75);
+  --border-light: rgba(255, 255, 255, 0.08);
+  
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-light: #64748b;
+  
+  --primary-light: rgba(29, 78, 216, 0.15);
+  --status-available-bg: rgba(16, 185, 129, 0.15);
+  --status-rac-bg: rgba(245, 158, 11, 0.15);
+  --status-wl-bg: rgba(239, 68, 68, 0.15);
+}
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Top Navigation Bar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  text-decoration: none;
+  color: var(--text-main);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+}
+
+.brand-badge {
+  background: var(--primary);
+  color: white;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Dual View Switcher Toggle */
+.view-switcher {
+  display: flex;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-light);
+  padding: 4px;
+  border-radius: var(--radius-full);
+}
+
+[data-theme="dark"] .view-switcher {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.switch-btn {
+  border: none;
+  background: transparent;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition);
+}
+
+.switch-btn.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.switch-btn.active.case-study-mode {
+  background: #0f172a;
+}
+
+[data-theme="dark"] .switch-btn.active.case-study-mode {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+/* Theme Toggle Button */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.icon-btn {
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-main);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.icon-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Layout Containers */
+.app-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 4rem 1.5rem;
+}
+
+.view-panel {
+  display: none;
+  animation: fadeIn 0.35s ease;
+}
+
+.view-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Utility Classes */
+.hidden { display: none !important; }
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
